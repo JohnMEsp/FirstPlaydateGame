@@ -47,3 +47,4 @@ source/libraries/noble/docs/
 
 .sentry-native/
 main.pdx/
+*.code-workspace
