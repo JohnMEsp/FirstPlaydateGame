@@ -43,7 +43,7 @@ luac.out
 
 builds/
 
-source/libraries/noble/docs/
+source/libraries/
 
 .sentry-native/
 main.pdx/

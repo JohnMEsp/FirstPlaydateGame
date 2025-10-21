@@ -1,0 +1,12 @@
+{
+  "$schema": "https://raw.githubusercontent.com/sumneko/vscode-lua/master/setting/schema.json",
+  "diagnostics.globals": ["playdate", "import", "json"],
+  "diagnostics.severity": { "duplicate-set-field": "Hint" },
+  "diagnostics.disable": ["lowercase-global"],
+  "format.defaultConfig": { "indent_style": "space", "indent_size": "4" },
+  "runtime.builtin": { "io": "disable", "os": "disable", "package": "disable" },
+  "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
+  "runtime.version": "Lua 5.4",
+  "workspace.preloadFileSize": 1000,
+  "workspace.library": ["./source/libraries", "$PLAYDATE_SDK_PATH/CoreLibs"]
+}

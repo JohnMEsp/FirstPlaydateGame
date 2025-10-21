@@ -1,3 +1,6 @@
 [submodule "Noble Engine"]
 	path = source/libraries/noble
 	url = https://github.com/NobleRobot/NobleEngine.git
+[submodule "LuaCATS for Panic PlaydateSDK"]
+	path = source/libraries/playdate-luacats
+	url = https://github.com/notpeter/playdate-luacats.git
