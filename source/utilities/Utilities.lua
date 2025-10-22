@@ -162,6 +162,9 @@ function PlayingField:init()
 	self.conCount  = 0  -- Max 3
 	self.starCount = 0  -- Max 4
 
+	self.turnStarted = false
+	self.continueTurn = false
+
 	-- Build shops for card purchasing
 	self.nonStarShop    = self.cardCollection.nonStarShop
 	self.starShop       = self.cardCollection.starShop
@@ -181,12 +184,16 @@ end
 -- Implement game logic
 -- Flow goes as follows: startTurn -> progressTurn (repeats) -> endTurn -> purchaseFromShop (optional)
 function PlayingField:startTurn()
+	self.turnsTaken = self.turnsTaken + 1
 	self.remainingDeck = copyTable(self.deckOwned)
 	self.cardsInPlay = {}
 
 	self.spaceUsed = 0
 	self.conCount = 0
 	self.starCount = 0
+
+	self.turnStarted = true
+	self.continueTurn = true
 end
 
 function PlayingField:progressTurn()
@@ -201,7 +208,8 @@ function PlayingField:progressTurn()
 	-- End turn if con count exceeds 3
 	self.conCount = self.conCount + drawnCardFromDeck.con
 	if self.conCount >= 3 then
-		return false
+		self.continueTurn = false
+		return self.continueTurn
 	end
 	-- End turn if there's an overflow of space
 	if self.spaceUsed > self.fieldTotal then
@@ -223,31 +231,35 @@ function PlayingField:progressTurn()
 	-- Game ends if 4 stars are collected
 	self.starCount = self.starCount + drawnCardFromDeck.star
 	if self.starCount >= 4 then
-		return false
+		self.continueTurn = false
+		return self.continueTurn
 	end
 
 
 	-- End turn if no cards remain in deck
 	if self.remainingDeck == nil then
-		return false
+		self.continueTurn = false
+		return self.continueTurn
 	end
 	-- End turn if field is full
 	if self.spaceUsed == self.fieldTotal then
-		return false
+		self.continueTurn = false
+		return self.continueTurn
 	end
 
-	return isTurnContinue
+	self.continueTurn = isTurnContinue
+	return self.continueTurn
 end
 
 function PlayingField:endTurn()
-	self.turnsTaken = self.turnsTaken + 1
+	self.turnStarted = false
 
 	if self.starCount >= 4 then
 		self.continueGame = false
 		self.gameWon = true
 	end
 
-	if self.turnsTaken >= 25 then
+	if self.turnsTaken > 25 then
 		self.continueGame = false
 		self.gameWon = false
 	end

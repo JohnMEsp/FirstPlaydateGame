@@ -34,6 +34,10 @@ function scene:setValues()
 	self.elementTurnY = 73
 	self.elementStarY = 106
 	self.elementConY = 139
+
+	self.cardX = 148
+	self.cardYStart = 32
+	self.cardYOffset = 20
 end
 
 -- This runs when your scene's object is created, which is the
@@ -67,6 +71,7 @@ end
 function scene:start()
 	scene.super.start(self)
 	-- Your code here
+	Global.GamePlayingField:startTurn()
 end
 
 -- This runs once per frame, and is meant for drawing code.
@@ -80,12 +85,21 @@ function scene:drawBackground()
 	Noble.Text.draw(Global.GamePlayingField.turnsTaken .. "/25", self.elementsX, self.elementTurnY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
 	Noble.Text.draw(Global.GamePlayingField.starCount  ..  "/4", self.elementsX, self.elementStarY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
 	Noble.Text.draw(Global.GamePlayingField.conCount   ..  "/3", self.elementsX, self.elementConY  + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+
+	local currCardY = self.cardYStart
+	for i, card in ipairs(Global.GamePlayingField.cardsInPlay) do
+		Noble.Text.draw(card.cardName, self.cardX, currCardY, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SMALL)
+		currCardY = currCardY + self.cardYOffset
+	end
 end
 
 -- This runs once per frame.
 function scene:update()
 	scene.super.update(self)
 	-- Your code here
+	if Global.GamePlayingField.continueTurn == false then
+		Global.GamePlayingField:endTurn()
+	end
 end
 
 -- This runs as as soon as a transition to another scene begins.
@@ -117,7 +131,10 @@ scene.inputHandler = {
 	-- A button
 	AButtonDown = function()  -- Runs once when button is pressed.
 		-- Your code here
-		Global.GamePlayingField.proTotal = Global.GamePlayingField.proTotal + 1
+		Global.GamePlayingField:progressTurn()
+		if Global.GamePlayingField.turnStarted == false then
+			Global.GamePlayingField:startTurn()
+		end
 	end,
 	AButtonHold = function()  -- Runs every frame while the player is holding button down.
 		-- Your code here
