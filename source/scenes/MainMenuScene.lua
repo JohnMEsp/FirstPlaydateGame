@@ -84,7 +84,7 @@ function scene:setupMenu(__menu)
 	__menu:addItem(
 		"New Game",
 		function()
-			GamePlayingField = PlayingField()
+			Global.GamePlayingField = PlayingField()
 			Noble.transition(HouseScene, nil, Noble.Transition.DipToBlack)
 		end
 	)

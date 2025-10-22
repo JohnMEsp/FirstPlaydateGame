@@ -75,7 +75,7 @@ function scene:drawBackground()
 	-- Your code here
 	self.background:draw(0, 0)
 
-	Noble.Text.draw(GamePlayingField.proTotal .. "/65", self.elementsX, self.elementProY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw(Global.GamePlayingField.proTotal .. "/65", self.elementsX, self.elementProY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
 	Noble.Text.draw("0/30", self.elementsX, self.elementCashY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
 	Noble.Text.draw("0/25", self.elementsX, self.elementTurnY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
 	Noble.Text.draw("0/4", self.elementsX, self.elementStarY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
@@ -117,7 +117,7 @@ scene.inputHandler = {
 	-- A button
 	AButtonDown = function()  -- Runs once when button is pressed.
 		-- Your code here
-		GamePlayingField.proTotal = GamePlayingField.proTotal + 1
+		Global.GamePlayingField.proTotal = Global.GamePlayingField.proTotal + 1
 	end,
 	AButtonHold = function()  -- Runs every frame while the player is holding button down.
 		-- Your code here

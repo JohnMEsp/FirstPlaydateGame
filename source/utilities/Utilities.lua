@@ -8,7 +8,7 @@ end
 
 
 -- Global variables
-GamePlayingField = nil
+Global.GamePlayingField = nil
 
 
 -- Define useful functions

@@ -8,5 +8,5 @@
   "runtime.nonstandardSymbol": ["+=", "-=", "*=", "/=", "//=", "%=", "<<=", ">>=", "&=", "|=", "^="],
   "runtime.version": "Lua 5.4",
   "workspace.preloadFileSize": 1000,
-  "workspace.library": ["./source/libraries", "$PLAYDATE_SDK_PATH/CoreLibs"]
+  "workspace.library": ["./source/libraries", "./source/utilities", "$PLAYDATE_SDK_PATH/CoreLibs"]
 }
