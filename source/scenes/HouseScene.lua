@@ -75,11 +75,11 @@ function scene:drawBackground()
 	-- Your code here
 	self.background:draw(0, 0)
 
-	Noble.Text.draw(Global.GamePlayingField.proTotal .. "/65", self.elementsX, self.elementProY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
-	Noble.Text.draw("0/30", self.elementsX, self.elementCashY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
-	Noble.Text.draw("0/25", self.elementsX, self.elementTurnY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
-	Noble.Text.draw("0/4", self.elementsX, self.elementStarY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
-	Noble.Text.draw("0/3", self.elementsX, self.elementConY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw(Global.GamePlayingField.proTotal   .. "/65", self.elementsX, self.elementProY  + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw(Global.GamePlayingField.cashTotal  .. "/30", self.elementsX, self.elementCashY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw(Global.GamePlayingField.turnsTaken .. "/25", self.elementsX, self.elementTurnY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw(Global.GamePlayingField.starCount  ..  "/4", self.elementsX, self.elementStarY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw(Global.GamePlayingField.conCount   ..  "/3", self.elementsX, self.elementConY  + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
 end
 
 -- This runs once per frame.
