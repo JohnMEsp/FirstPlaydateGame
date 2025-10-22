@@ -2,8 +2,6 @@ MainMenuScene = {}
 class("MainMenuScene").extends(NobleScene)
 local scene = MainMenuScene
 
-scene.gamePlayingField = nil
-
 function scene:setValues()
 	self.background = Graphics.image.new("assets/images/menus/main_menu")
 
@@ -15,22 +13,19 @@ function scene:setValues()
 
 	-- self.menuX = 128
 	self.menuX = 200
-	self.menuY = 174
+	self.menuYOffset = 8
+	self.menuY = 174 + self.menuYOffset
 end
 
 function scene:init()
 	scene.super.init(self)
 
-	self.logo = Graphics.image.new("libraries/noble/assets/images/NobleRobotLogo")
-
 	self:setValues()
 
-	self.menu = Noble.Menu.new(false, Noble.Text.ALIGN_CENTER, false, self.color1, 8,8,0, Noble.Text.FONT_MEDIUM, 4)
-
+	self.menu = Noble.Menu.new(false, Noble.Text.ALIGN_CENTER, false, self.color1, 8,8,0, Noble.Text.FONT_LARGE, 4)
 	self:setupMenu(self.menu)
 
 	local crankTick = 0
-
 	self.inputHandler = {
 		upButtonDown = function()
 			self.menu:selectPrevious()
@@ -89,7 +84,8 @@ function scene:setupMenu(__menu)
 	__menu:addItem(
 		"New Game",
 		function()
-			self.gamePlayingField = PlayingField()
+			GamePlayingField = PlayingField()
 			Noble.transition(HouseScene, nil, Noble.Transition.DipToBlack)
-		end)
+		end
+	)
 end

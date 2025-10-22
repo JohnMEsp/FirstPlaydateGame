@@ -18,11 +18,22 @@ local scene = HouseScene
 -- When accessed inside a method in this file, you may also use self.variable2.
 
 -- This is the background color of this scene.
+scene.backgroundColor = Graphics.kColorBlack
+
 function scene:setValues()
 	self.background = Graphics.image.new("assets/images/menus/house")
 
 	self.color1 = Graphics.kColorBlack
 	self.color2 = Graphics.kColorWhite
+
+	self.elementsX = 366
+	self.elementsYOffset = 7
+
+	self.elementProY = 6
+	self.elementCashY = 39
+	self.elementTurnY = 73
+	self.elementStarY = 106
+	self.elementConY = 139
 end
 
 -- This runs when your scene's object is created, which is the
@@ -62,8 +73,13 @@ end
 function scene:drawBackground()
 	scene.super.drawBackground(self)
 	-- Your code here
-	scene.super.drawBackground(self)
 	self.background:draw(0, 0)
+
+	Noble.Text.draw(GamePlayingField.proTotal .. "/65", self.elementsX, self.elementProY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw("0/30", self.elementsX, self.elementCashY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw("0/25", self.elementsX, self.elementTurnY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw("0/4", self.elementsX, self.elementStarY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
+	Noble.Text.draw("0/3", self.elementsX, self.elementConY + self.elementsYOffset, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SYSTEM)
 end
 
 -- This runs once per frame.
@@ -101,6 +117,7 @@ scene.inputHandler = {
 	-- A button
 	AButtonDown = function()  -- Runs once when button is pressed.
 		-- Your code here
+		GamePlayingField.proTotal = GamePlayingField.proTotal + 1
 	end,
 	AButtonHold = function()  -- Runs every frame while the player is holding button down.
 		-- Your code here

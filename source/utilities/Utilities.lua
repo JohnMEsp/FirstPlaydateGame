@@ -7,6 +7,10 @@ function Utilities.getZero()
 end
 
 
+-- Global variables
+GamePlayingField = nil
+
+
 -- Define useful functions
 function drawCards(deck, numCardsToDraw)
 	local drawnCards = {}
