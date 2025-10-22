@@ -2,6 +2,8 @@ MainMenuScene = {}
 class("MainMenuScene").extends(NobleScene)
 local scene = MainMenuScene
 
+scene.gamePlayingField = nil
+
 function scene:setValues()
 	self.background = Graphics.image.new("assets/images/menus/main_menu")
 
@@ -84,5 +86,10 @@ function scene:exit()
 end
 
 function scene:setupMenu(__menu)
-	__menu:addItem("New Game", function() Noble.transition(HouseScene, nil, Noble.Transition.DipToBlack) end)
+	__menu:addItem(
+		"New Game",
+		function()
+			self.gamePlayingField = PlayingField()
+			Noble.transition(HouseScene, nil, Noble.Transition.DipToBlack)
+		end)
 end
