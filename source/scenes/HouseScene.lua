@@ -26,17 +26,17 @@ function scene:setValues()
 	self.color1 = Graphics.kColorBlack
 	self.color2 = Graphics.kColorWhite
 
-	self.elementsX = 366
-	self.elementsYOffset = 7
+	self.elementsX = 356
+	self.elementsYOffset = 5
 
-	self.elementProY = 6
+	self.elementProY = 11
 	self.elementCashY = 39
-	self.elementTurnY = 73
-	self.elementStarY = 106
-	self.elementConY = 139
+	self.elementTurnY = 67
+	self.elementStarY = 95
+	self.elementConY = 123
 
-	self.cardX = 148
-	self.cardYStart = 32
+	self.cardX = 150
+	self.cardYStart = 50
 	self.cardYOffset = 20
 end
 

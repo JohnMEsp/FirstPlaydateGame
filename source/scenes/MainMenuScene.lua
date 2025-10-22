@@ -13,7 +13,7 @@ function scene:setValues()
 
 	-- self.menuX = 128
 	self.menuX = 200
-	self.menuYOffset = 8
+	self.menuYOffset = 16
 	self.menuY = 174 + self.menuYOffset
 end
 
