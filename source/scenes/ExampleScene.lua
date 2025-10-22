@@ -60,22 +60,22 @@ end
 
 function scene:start()
 	scene.super.start(self)
-
 	self.menu:activate()
 end
 
 function scene:drawBackground()
 	scene.super.drawBackground(self)
-
 	self.background:draw(0, 0)
 end
 
 function scene:update()
 	scene.super.update(self)
 
-	Graphics.setColor(self.color1)
+	Graphics.setColor(self.color2)
 	Graphics.setDitherPattern(0.2, Graphics.image.kDitherTypeScreen)
 	self.menu:draw(self.menuX, self.sequence:get() or self.menuY)
+
+	Graphics.setColor(Graphics.kColorWhite)
 end
 
 function scene:exit()
