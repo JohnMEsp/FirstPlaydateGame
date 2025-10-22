@@ -4,10 +4,14 @@ local scene = ExampleScene2
 
 function scene:setValues()
 	scene.super.setValues(self)
+
 	self.background = Graphics.image.new("assets/images/background2")
+
 	self.color1 = Graphics.kColorWhite
 	self.color2 = Graphics.kColorBlack
+
 	self.menuX = 200
+	self.menuY = 15
 end
 
 function scene:setupMenu(__menu)
@@ -31,12 +35,4 @@ function scene:setupMenu(__menu)
 		y = -150,
 		rotation = 45
 	}) end)
-
-end
-
-function scene:drawLogo()
-	Graphics.setColor(self.color2)
-	Graphics.fillRoundRect(10, 240-45, 130, 65, 15)
-	self.logo:setInverted(false)
-	self.logo:draw(25, 240-27-10)
 end

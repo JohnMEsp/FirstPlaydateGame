@@ -11,11 +11,9 @@ function scene:setValues()
 	self.menu = nil
 	self.sequence = nil
 
-	self.menuX = 15
-
-	self.menuYFrom = -50
-	self.menuY = 15
-	self.menuYTo = 240
+	-- self.menuX = 128
+	self.menuX = 200
+	self.menuY = 174
 end
 
 function scene:init()
@@ -25,7 +23,7 @@ function scene:init()
 
 	self:setValues()
 
-	self.menu = Noble.Menu.new(false, Noble.Text.ALIGN_LEFT, false, self.color2, 4,6,0, Noble.Text.FONT_SMALL)
+	self.menu = Noble.Menu.new(false, Noble.Text.ALIGN_CENTER, false, self.color1, 8,8,0, Noble.Text.FONT_MEDIUM, 4)
 
 	self:setupMenu(self.menu)
 
@@ -57,7 +55,7 @@ end
 
 function scene:enter()
 	scene.super.enter(self)
-	self.sequence = Sequence.new():from(self.menuYFrom):to(self.menuY, 1.5, Ease.outBounce):start()
+	self.sequence = Sequence.new():from(self.menuY):to(self.menuY):start()
 end
 
 function scene:start()
@@ -77,45 +75,15 @@ function scene:update()
 
 	Graphics.setColor(self.color1)
 	Graphics.setDitherPattern(0.2, Graphics.image.kDitherTypeScreen)
-	Graphics.fillRoundRect(self.menuX, self.sequence:get() or self.menuY, 185, 200, 15)
-	self.menu:draw(self.menuX+15, self.sequence:get() + 8 or self.menuY+8)
-
-	self:drawLogo()
-
-	Graphics.setColor(Graphics.kColorBlack)
-
+	self.menu:draw(self.menuX, self.sequence:get() or self.menuY)
 end
 
 function scene:exit()
 	scene.super.exit(self)
-	self.sequence = Sequence.new():from(self.menuY):to(self.menuYTo, 0.5, Ease.inSine)
+	self.sequence = Sequence.new():from(self.menuY):to(self.menuY)
 	self.sequence:start();
 end
 
 function scene:setupMenu(__menu)
-	__menu:addItem(Noble.Transition.Cut.name,						function() Noble.transition(ExampleScene2, nil, Noble.Transition.Cut) end)
-	__menu:addItem(Noble.Transition.CrossDissolve.name,				function() Noble.transition(ExampleScene2, nil, Noble.Transition.CrossDissolve) end)
-	__menu:addItem(Noble.Transition.DipToBlack.name,				function() Noble.transition(ExampleScene2, nil, Noble.Transition.DipToBlack) end)
-	__menu:addItem(Noble.Transition.DipToWhite.name,				function() Noble.transition(ExampleScene2, nil, Noble.Transition.DipToWhite) end)
-	__menu:addItem(Noble.Transition.Imagetable.name.." (Bolt)",		function() Noble.transition(ExampleScene2, nil, Noble.Transition.Imagetable) end)
-	__menu:addItem(Noble.Transition.Imagetable.name.." (Curtain)",	function() Noble.transition(ExampleScene2, nil, Noble.Transition.Imagetable, {
-		imagetable = Graphics.imagetable.new("libraries/noble/assets/images/ImagetableTransition"),
-		rotateExit = true
-	}) end)
-	__menu:addItem(Noble.Transition.ImagetableMask.name,			function() Noble.transition(ExampleScene2, nil, Noble.Transition.ImagetableMask, {
-		imagetable = Graphics.imagetable.new("libraries/noble/assets/images/ImagetableTransition")
-	}) end)
-	__menu:addItem(Noble.Transition.Spotlight.name,					function() Noble.transition(ExampleScene2, nil, Noble.Transition.Spotlight, {
-		invert = true, xEnterStart = 50, yEnterStart = 50, xEnterEnd = 250, yEnterEnd = 200,
-	}) end)
-	__menu:addItem(Noble.Transition.SpotlightMask.name,				function() Noble.transition(ExampleScene2, nil, Noble.Transition.SpotlightMask, {
-		invert = true
-	}) end)
-end
-
-function scene:drawLogo()
-	Graphics.setColor(self.color2)
-	Graphics.fillRoundRect(260, -20, 130, 65, 15)
-	self.logo:setInverted(true)
-	self.logo:draw(275, 8)
+	__menu:addItem("New Game", function() Noble.transition(ExampleScene2, nil, Noble.Transition.DipToBlack) end)
 end
