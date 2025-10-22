@@ -1,9 +1,9 @@
-ExampleScene = {}
-class("ExampleScene").extends(NobleScene)
-local scene = ExampleScene
+MainMenuScene = {}
+class("MainMenuScene").extends(NobleScene)
+local scene = MainMenuScene
 
 function scene:setValues()
-	self.background = Graphics.image.new("assets/images/background1")
+	self.background = Graphics.image.new("assets/images/menus/main_menu")
 
 	self.color1 = Graphics.kColorBlack
 	self.color2 = Graphics.kColorWhite
@@ -50,7 +50,6 @@ function scene:init()
 			self.menu:click()
 		end
 	}
-
 end
 
 function scene:enter()
@@ -85,5 +84,5 @@ function scene:exit()
 end
 
 function scene:setupMenu(__menu)
-	__menu:addItem("New Game", function() Noble.transition(ExampleScene2, nil, Noble.Transition.DipToBlack) end)
+	__menu:addItem("New Game", function() Noble.transition(HouseScene, nil, Noble.Transition.DipToBlack) end)
 end

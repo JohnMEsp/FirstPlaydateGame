@@ -18,7 +18,12 @@ local scene = HouseScene
 -- When accessed inside a method in this file, you may also use self.variable2.
 
 -- This is the background color of this scene.
-scene.backgroundColor = Graphics.kColorWhite
+function scene:setValues()
+	self.background = Graphics.image.new("assets/images/menus/house")
+
+	self.color1 = Graphics.kColorBlack
+	self.color2 = Graphics.kColorWhite
+end
 
 -- This runs when your scene's object is created, which is the
 -- first thing that happens when transitioning away from another scene.
@@ -28,12 +33,11 @@ function scene:init(__sceneProperties)
 	scene.super.init(self)
 
 	-- Your code here, e.g.:
-
 	-- Global.thing = 100
 	-- variable1 = "some text"
 	-- self.variable2 = __sceneProperties.variable2
-	-- ...
 
+	self:setValues()
 end
 
 -- When transitioning from another scene, this runs as soon as this
@@ -58,6 +62,8 @@ end
 function scene:drawBackground()
 	scene.super.drawBackground(self)
 	-- Your code here
+	scene.super.drawBackground(self)
+	self.background:draw(0, 0)
 end
 
 -- This runs once per frame.
@@ -111,7 +117,7 @@ scene.inputHandler = {
 		-- Your code here
 	end,
 	BButtonHeld = function()
-		-- Your code here
+		Noble.transition(MainMenuScene, nil, Noble.Transition.DipToWhite)
 	end,
 	BButtonHold = function()
 		-- Your code here
