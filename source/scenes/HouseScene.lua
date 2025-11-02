@@ -22,6 +22,7 @@ scene.backgroundColor = Graphics.kColorBlack
 
 function scene:setValues()
 	self.background = Graphics.image.new("assets/images/menus/house")
+	self.testCard = Graphics.image.new("assets/images/cards/OldFriendTest")
 
 	self.color1 = Graphics.kColorBlack
 	self.color2 = Graphics.kColorWhite
@@ -91,6 +92,8 @@ function scene:drawBackground()
 		Noble.Text.draw(card.cardName, self.cardX, currCardY, Noble.Text.ALIGN_CENTER, false, Noble.Text.FONT_SMALL)
 		currCardY = currCardY + self.cardYOffset
 	end
+
+	self.testCard:draw(25,70)
 end
 
 -- This runs once per frame.
