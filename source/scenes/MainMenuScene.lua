@@ -5,13 +5,12 @@ local scene = MainMenuScene
 function scene:setValues()
 	self.background = Graphics.image.new("assets/images/menus/main_menu")
 
-	self.color1 = Graphics.kColorBlack
-	self.color2 = Graphics.kColorWhite
+	self.colorBlack = Graphics.kColorBlack
+	self.colorWhite = Graphics.kColorWhite
 
 	self.menu = nil
 	self.sequence = nil
 
-	-- self.menuX = 128
 	self.menuX = 200
 	self.menuYOffset = 16
 	self.menuY = 174 + self.menuYOffset
@@ -22,7 +21,7 @@ function scene:init()
 
 	self:setValues()
 
-	self.menu = Noble.Menu.new(false, Noble.Text.ALIGN_CENTER, false, self.color1, 8,8,0, Noble.Text.FONT_LARGE, 4)
+	self.menu = Noble.Menu.new(false, Noble.Text.ALIGN_CENTER, false, self.colorBlack, 8, 8, 0, Noble.Text.FONT_LARGE, 4)
 	self:setupMenu(self.menu)
 
 	local crankTick = 0
@@ -67,15 +66,15 @@ end
 function scene:update()
 	scene.super.update(self)
 
-	Graphics.setColor(self.color2)
+	Graphics.setColor(self.colorWhite)
 	Graphics.setDitherPattern(0.2, Graphics.image.kDitherTypeScreen)
-	self.menu:draw(self.menuX, self.sequence:get() or self.menuY)
 
-	Graphics.setColor(Graphics.kColorWhite)
+	self.menu:draw(self.menuX, self.sequence:get() or self.menuY)
 end
 
 function scene:exit()
 	scene.super.exit(self)
+
 	self.sequence = Sequence.new():from(self.menuY):to(self.menuY)
 	self.sequence:start();
 end

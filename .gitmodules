@@ -4,3 +4,6 @@
 [submodule "LuaCATS for Panic PlaydateSDK"]
 	path = source/libraries/playdate-luacats
 	url = https://github.com/notpeter/playdate-luacats.git
+[submodule "Playdate Arcade Fonts"]
+	path = source/assets/fonts/playdate-arcade-fonts
+	url = https://github.com/idleberg/playdate-arcade-fonts.git
